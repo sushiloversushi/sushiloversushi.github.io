@@ -72,9 +72,9 @@ function submit() {
         }
 
         if (RANK === "veteran" || RANK === "member") {
-            total = MULTI * (NT1 * 17 + NT2 * 10 + NT3 * 8 + NT4 * 3 + NT5 * 10 + NT6W * 15 + NT6L * 6 + RT1 * 15 + MIN * 4 + V1 * 5 + RT2 * 15 + RT3 * 7 + RT3B * 5 + RT4 * 5 + RT5 * 7 + RT6 * 10 + RT8 * 10 + RT9 * 4 + RT10 * 3 + RT10W * 5 + RT11NA * 4 + RT11AT * 6 + RT12 * 10 + RT13 * 3 + RT14 * 3 + SR * 9 + HP * 6 + PMPL * 4 + PMPW * 5 + OS * 15);
+            total = MULTI * (NT1 * 17 + NT2 * 10 + NT3 * 8 + NT4 * 3 + NT5 * 10 + NT6W * 15 + NT6L * 6 + RT1 * 10 + MIN * 16 + V1 * 5 + RT2 * 15 + RT3 * 7 + RT3B * 5 + RT4 * 5 + RT5 * 7 + RT6 * 10 + RT8 * 10 + RT9 * 4 + RT10 * 3 + RT10W * 5 + RT11NA * 4 + RT11AT * 6 + RT12 * 10 + RT13 * 3 + RT14 * 3 + SR * 9 + HP * 6 + PMPL * 4 + PMPW * 5 + OS * 15);
             total = Math.round(total);
-            totalrp = NT1 * 13 + NT2 * 4 + NT3 * 6 + NT4 * 1 + NT5 * 4 + NT6W * 7 + NT6L * 2 + RT1 * 5 + HOUR * 3 + RT2 * 5 + RT3 * 5 + RT4 * 3 + RT5 * 5 + RT6 * 7 + RT8 * 5 + RT9 * 2 + RT10 * 1 + RT10W * 2 + RT11NA * 1 + RT11AT * 3 + RT12 * 5 + RT13 * 1 + RT14 * 1 + SR * 5 + HP * 2 + PMPL * 2 + PMPW * 3 + OS * 8;
+            totalrp = NT1 * 13 + NT2 * 4 + NT3 * 6 + NT4 * 1 + NT5 * 4 + NT6W * 7 + NT6L * 2 + RT1 * 3 + HOUR * 7 + RT2 * 5 + RT3 * 5 + RT4 * 3 + RT5 * 5 + RT6 * 7 + RT8 * 5 + RT9 * 2 + RT10 * 1 + RT10W * 2 + RT11NA * 1 + RT11AT * 3 + RT12 * 5 + RT13 * 1 + RT14 * 1 + SR * 5 + HP * 2 + PMPL * 2 + PMPW * 3 + OS * 8;
             totalap = NT1 * 7 + NT2 * 7 + NT3 * 5 + NT4 * 2 + NT5 * 7 + NT6W * 10 + NT6L * 10 + RT1 * 5 + HOUR * 2 + RT2 * 4 + RT3 * 15 + RT4 * 10 + RT5 * 7.5 + RT5H * 10 + RT6 * 10 + RT6H * 14 + RT8 * 8 + RT9 * 4 + RT10 * 3 + RT10W * 6 + RT11NA * 3 + RT11AT * 7 + RT12 * 8 + RT14 * 2 + SR * 4 + HP * 3 + PMPL * 3 + PMPW * 5 + OS * 12;
         }
 
@@ -94,9 +94,9 @@ function submit() {
         data += addTaskDetails(NT5, MULTI, 10, 4, 7, 'N-Task 5');
         data += addTaskDetails(NT6W, MULTI, 15, 7, 10, 'N-Task 6 [Win]');
         data += addTaskDetails(NT6L, MULTI, 6, 2, 10, 'N-Task 6 [Loss]');
-        data += addTaskDetails(RT1, MULTI, 15, 5, 5, 'R-Task 1');
-        data += (MIN > 0) ? `+${MIN * MULTI * 4} points for additional 20 minutes\r\n` : '';
-        data += (HOUR > 0) ? `+${HOUR * 3} rp +${HOUR * 2} AP for 1h in the support\r\n` : '';
+        data += addTaskDetails(RT1, MULTI, 10, 3, 5, 'R-Task 1');
+        data += (MIN > 0) ? `+${MIN * MULTI * 16} points for additional 30 minutes\r\n` : '';
+        data += (HOUR > 0) ? `+${HOUR * 7} rp +${HOUR * 2} AP for 1h in the support\r\n` : '';
         data += (V1 > 0) ? `+${V1 * MULTI * 5} points for ending the support in a 1v1\r\n` : '';
         data += addTaskDetails(RT2, MULTI, 15, 5, 4, 'R-Task 2');
         data += addTaskDetails(RT3, MULTI, 7, 5, 15, 'R-Task 3');
