@@ -6,11 +6,12 @@ function more() {
     var row = table.insertRow(1);
     row.id = id;
 
-    for (let i = 0; i < 37; i++) {
+    for (let i = 0; i < 40; i++) {  // Changed from 37 to 40 to cover all cases
         var cell = row.insertCell(i);
         cell.id = i;
         cell.innerHTML = `<input type="text" id="s${id}${i}" style="color: white; width: 65%; background-color: transparent; border: 0px;">`;
     }
+    addRowFocusListeners();
 }
 
 function submit() {
@@ -22,17 +23,24 @@ function submit() {
     let localStorageValues = [];
 
     for (let j = 6; j < rowCount + 5; j++) {
+        // Initialize all variables with default values
         let total = 0, totalrp = 0, totalap = 0;
-        let NAME, RANK, MULTI, NT1, NT2, NT3, NT4, NT5, NT6W, NT6L, RT1, MIN, HOUR, V1, RT2, RT3, RT3B, RT4, RT5, RT5H, RT6, RT6H, RT7, RT8, RT9, RT10, RT10W, RT11NA, RT11AT, RT12, RT13, RT14, OS, PMPW, PMPL, NS, HP, AS, WI, SP;
+        let NAME = "", RANK = "", MULTI = 1;
+        let NT1 = 0, NT2 = 0, NT3 = 0, NT4 = 0, NT5 = 0, NT6W = 0, NT6L = 0;
+        let RT1 = 0, MIN = 0, HOUR = 0, V1 = 0, RT2 = 0, RT3 = 0, RT3B = 0;
+        let RT4 = 0, RT5 = 0, RT5H = 0, RT6 = 0, RT6H = 0, RT7 = 0, RT8 = 0;
+        let RT9 = 0, RT10 = 0, RT10W = 0, RT11NA = 0, RT11AT = 0, RT12 = 0;
+        let RT13 = 0, RT14 = 0, OS = 0, PMPW = 0, PMPL = 0, NS = 0, HP = 0;
+        let AS = 0, WI = 0, SP = 0;
 
-        for (let a = 0; a < 37; a++) {
+        for (let a = 0; a < 40; a++) {  // Increased to 40 to cover all cases
             let id = `s${j}${a}`;
             let element = document.getElementById(id);
             if (element) {
                 switch (a) {
-                    case 0: NAME = element.value; break;
-                    case 1: RANK = element.value; break;
-                    case 2: MULTI = parseFloat(element.value) || 1; break; // Ensure MULTI is a number
+                    case 0: NAME = element.value || ""; break;
+                    case 1: RANK = element.value || ""; break;
+                    case 2: MULTI = Math.max(1, parseFloat(element.value) || 1); break;
                     case 3: NT1 = parseFloat(element.value) || 0; break;
                     case 4: NT2 = parseFloat(element.value) || 0; break;
                     case 5: NT3 = parseFloat(element.value) || 0; break;
@@ -78,14 +86,16 @@ function submit() {
             total = MULTI * (NT1 * 17 + NT2 * 10 + NT3 * 8 + NT4 * 3 + NT5 * 10 + NT6W * 15 + NT6L * 6 + RT1 * 10 + MIN * 16 + V1 * 5 + RT2 * 15 + RT3 * 7 + RT3B * 5 + RT4 * 5 + RT5 * 7 + RT6 * 10 + RT8 * 10 + RT9 * 4 + RT10 * 3 + RT10W * 5 + RT11NA * 4 + RT11AT * 6 + RT12 * 10 + RT13 * 3 + RT14 * 3 + OS * 15 + PMPW * 5 + PMPL * 4 + NS * 12 + HP * 6 + AS * 10 + WI * 6 + SP * 15);
             total = Math.round(total);
             totalrp = NT1 * 13 + NT2 * 4 + NT3 * 6 + NT4 * 1 + NT5 * 4 + NT6W * 7 + NT6L * 2 + RT1 * 3 + HOUR * 7 + RT2 * 5 + RT3 * 5 + RT4 * 3 + RT5 * 5 + RT6 * 7 + RT8 * 5 + RT9 * 2 + RT10 * 1 + RT10W * 2 + RT11NA * 1 + RT11AT * 3 + RT12 * 5 + RT13 * 1 + RT14 * 1 + OS * 8 + PMPW * 3 + PMPL * 2 + NS * 6 + HP * 2 + AS * 7 + WI * 4 + SP * 8;
+            totalrp = Math.round(totalrp);
             totalap = NT1 * 7 + NT2 * 7 + NT3 * 5 + NT4 * 2 + NT5 * 7 + NT6W * 10 + NT6L * 10 + RT1 * 5 + HOUR * 2 + RT2 * 4 + RT3 * 15 + RT4 * 10 + RT5 * 7.5 + RT5H * 10 + RT6 * 10 + RT6H * 14 + RT8 * 8 + RT9 * 4 + RT10 * 3 + RT10W * 6 + RT11NA * 3 + RT11AT * 7 + RT12 * 8 + RT14 * 2 + OS * 12 + PMPW * 5 + PMPL * 3 + NS * 10 + HP * 3 + AS * 7 + WI * 5 + SP * 10;
+            totalap = Math.round(totalap);
         }
 
         let data = `${NAME} (${RANK})\r\r\nPoints: ${total} RP: ${totalrp} AP: ${totalap}\r\n\r\n`;
 
         function addTaskDetails(taskCount, multi, pointsValue, rpValue, apValue, taskName) {
             if (taskCount > 0) {
-                return `+${taskCount * multi * pointsValue} points +${taskCount * rpValue} rp +${taskCount * apValue} ap for ${taskCount}x ${taskName}\r\n`;
+                return `+${Math.round(taskCount * multi * pointsValue)} points +${Math.round(taskCount * rpValue)} rp +${Math.round(taskCount * apValue)} ap for ${taskCount}x ${taskName}\r\n`;
             }
             return '';
         }
@@ -98,17 +108,17 @@ function submit() {
         data += addTaskDetails(NT6W, MULTI, 15, 7, 10, 'N-Task 6 [Win]');
         data += addTaskDetails(NT6L, MULTI, 6, 2, 10, 'N-Task 6 [Loss]');
         data += addTaskDetails(RT1, MULTI, 10, 3, 5, 'R-Task 1');
-        data += (MIN > 0) ? `+${MIN * MULTI * 16} points for additional 30 minutes\r\n` : '';
-        data += (HOUR > 0) ? `+${HOUR * 7} rp +${HOUR * 2} AP for 1h in the support\r\n` : '';
-        data += (V1 > 0) ? `+${V1 * MULTI * 5} points for ending the support in a 1v1\r\n` : '';
+        data += (MIN > 0) ? `+${Math.round(MIN * MULTI * 16)} points for additional 30 minutes\r\n` : '';
+        data += (HOUR > 0) ? `+${Math.round(HOUR * 7)} rp +${Math.round(HOUR * 2)} AP for 1h in the support\r\n` : '';
+        data += (V1 > 0) ? `+${Math.round(V1 * MULTI * 5)} points for ending the support in a 1v1\r\n` : '';
         data += addTaskDetails(RT2, MULTI, 15, 5, 4, 'R-Task 2');
         data += addTaskDetails(RT3, MULTI, 7, 5, 15, 'R-Task 3');
-        data += (RT3B > 0) ? `+${RT3B * MULTI * 5} points for being the best on the joint training\r\n` : '';
+        data += (RT3B > 0) ? `+${Math.round(RT3B * MULTI * 5)} points for being the best on the joint training\r\n` : '';
         data += addTaskDetails(RT4, MULTI, 5, 3, 10, 'R-Task 4');
         data += addTaskDetails(RT5, MULTI, 7, 5, 7.5, 'R-Task 5 (attending)');
-        data += (RT5H > 0) ? `+${RT5H * 10} ap (hosting) for ${RT5H}x R-Task 5\r\n` : '';
+        data += (RT5H > 0) ? `+${Math.round(RT5H * 10)} ap (hosting) for ${RT5H}x R-Task 5\r\n` : '';
         data += addTaskDetails(RT6, MULTI, 10, 7, 10, 'R-Task 6 (attending)');
-        data += (RT6H > 0) ? `+${RT6H * 14} ap (hosting) for ${RT6H}x R-Task 6\r\n` : '';        
+        data += (RT6H > 0) ? `+${Math.round(RT6H * 14)} ap (hosting) for ${RT6H}x R-Task 6\r\n` : '';        
         data += addTaskDetails(RT8, MULTI, 10, 5, 8, 'R-Task 8');
         data += addTaskDetails(RT9, MULTI, 4, 2, 4, 'R-Task 9');
         data += addTaskDetails(RT10, MULTI, 3, 1, 3, 'R-Task 10');
@@ -179,20 +189,3 @@ function addRowFocusListeners() {
 }
 
 window.addEventListener('load', addRowFocusListeners);
-
-function more() {
-    var table = document.getElementById("tg");
-    var rowCount = table.getElementsByTagName("tr").length;
-    var id = rowCount + 5;
-
-    var row = table.insertRow(1);
-    row.id = id;
-
-    for (let i = 0; i < 37; i++) {
-        var cell = row.insertCell(i);
-        cell.id = i;
-        cell.innerHTML = `<input type="text" id="s${id}${i}" style="color: white; width: 65%; background-color: transparent; border: 0px;">`;
-    }
-    addRowFocusListeners();
-}
-
