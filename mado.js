@@ -23,7 +23,7 @@ function submit() {
 
     for (let j = 6; j < rowCount + 5; j++) {
         let total = 0, totalrp = 0, totalap = 0;
-        let NAME, RANK, MULTI, NT1, NT2, NT3, NT4, NT5, NT6W, NT6L, RT1, MIN, HOUR, V1, RT2, RT3, RT3B, RT4, RT5, RT5H, RT6, RT6H, RT7, RT8, RT9, RT10, RT10W, RT11NA, RT11AT, RT12, RT13, RT14, SR, HP, PMPW, PMPL, OS;
+        let NAME, RANK, MULTI, NT1, NT2, NT3, NT4, NT5, NT6W, NT6L, RT1, MIN, HOUR, V1, RT2, RT3, RT3B, RT4, RT5, RT5H, RT6, RT6H, RT7, RT8, RT9, RT10, RT10W, RT11NA, RT11AT, RT12, RT13, RT14, OS, PMPW, PMPL, NS, HP, AS, WI, SP;
 
         for (let a = 0; a < 37; a++) {
             let id = `s${j}${a}`;
@@ -62,20 +62,25 @@ function submit() {
                     case 29: RT12 = parseFloat(element.value) || 0; break;
                     case 30: RT13 = parseFloat(element.value) || 0; break;
                     case 31: RT14 = parseFloat(element.value) || 0; break;
-                    case 32: SR = parseFloat(element.value) || 0; break;
-                    case 33: HP = parseFloat(element.value) || 0; break;
-                    case 34: PMPW = parseFloat(element.value) || 0; break;
-                    case 35: PMPL = parseFloat(element.value) || 0; break;
-                    case 36: OS = parseFloat(element.value) || 0; break;
+                    case 32: OS = parseFloat(element.value) || 0; break;
+                    case 33: PMPW = parseFloat(element.value) || 0; break;
+                    case 34: PMPL = parseFloat(element.value) || 0; break;
+                    case 35: NS = parseFloat(element.value) || 0; break;
+                    case 36: HP = parseFloat(element.value) || 0; break;
+                    case 37: AS = parseFloat(element.value) || 0; break;
+                    case 38: WI = parseFloat(element.value) || 0; break;
+                    case 39: SP = parseFloat(element.value) || 0; break;
                 }
             }
         }
 
         if (RANK === "veteran" || RANK === "member") {
-            total = MULTI * (NT1 * 17 + NT2 * 10 + NT3 * 8 + NT4 * 3 + NT5 * 10 + NT6W * 15 + NT6L * 6 + RT1 * 10 + MIN * 16 + V1 * 5 + RT2 * 15 + RT3 * 7 + RT3B * 5 + RT4 * 5 + RT5 * 7 + RT6 * 10 + RT8 * 10 + RT9 * 4 + RT10 * 3 + RT10W * 5 + RT11NA * 4 + RT11AT * 6 + RT12 * 10 + RT13 * 3 + RT14 * 3 + SR * 9 + HP * 6 + PMPL * 4 + PMPW * 5 + OS * 15);
+            total = MULTI * (NT1 * 17 + NT2 * 10 + NT3 * 8 + NT4 * 3 + NT5 * 10 + NT6W * 15 + NT6L * 6 + RT1 * 10 + MIN * 16 + V1 * 5 + RT2 * 15 + RT3 * 7 + RT3B * 5 + RT4 * 5 + RT5 * 7 + RT6 * 10 + RT8 * 10 + RT9 * 4 + RT10 * 3 + RT10W * 5 + RT11NA * 4 + RT11AT * 6 + RT12 * 10 + RT13 * 3 + RT14 * 3 + OS * 15 + PMPW * 5 + PMPL * 4 + NS * 12 + HP * 6 + AS * 10 + WI * 6 + SP * 15);
             total = Math.round(total);
-            totalrp = NT1 * 13 + NT2 * 4 + NT3 * 6 + NT4 * 1 + NT5 * 4 + NT6W * 7 + NT6L * 2 + RT1 * 3 + HOUR * 7 + RT2 * 5 + RT3 * 5 + RT4 * 3 + RT5 * 5 + RT6 * 7 + RT8 * 5 + RT9 * 2 + RT10 * 1 + RT10W * 2 + RT11NA * 1 + RT11AT * 3 + RT12 * 5 + RT13 * 1 + RT14 * 1 + SR * 5 + HP * 2 + PMPL * 2 + PMPW * 3 + OS * 8;
-            totalap = NT1 * 7 + NT2 * 7 + NT3 * 5 + NT4 * 2 + NT5 * 7 + NT6W * 10 + NT6L * 10 + RT1 * 5 + HOUR * 2 + RT2 * 4 + RT3 * 15 + RT4 * 10 + RT5 * 7.5 + RT5H * 10 + RT6 * 10 + RT6H * 14 + RT8 * 8 + RT9 * 4 + RT10 * 3 + RT10W * 6 + RT11NA * 3 + RT11AT * 7 + RT12 * 8 + RT14 * 2 + SR * 4 + HP * 3 + PMPL * 3 + PMPW * 5 + OS * 12;
+            totalrp = NT1 * 13 + NT2 * 4 + NT3 * 6 + NT4 * 1 + NT5 * 4 + NT6W * 7 + NT6L * 2 + RT1 * 3 + HOUR * 7 + RT2 * 5 + RT3 * 5 + RT4 * 3 + RT5 * 5 + RT6 * 7 + RT8 * 5 + RT9 * 2 + RT10 * 1 + RT10W * 2 + RT11NA * 1 + RT11AT * 3 + RT12 * 5 + RT13 * 1 + RT14 * 1 + OS * 8 + PMPW * 3 + PMPL * 2 + NS * 6 + HP * 2 + AS * 7 + WI * 4 + SP * 8;
+            totalrp = Math.round(totalrp);
+            totalap = NT1 * 7 + NT2 * 7 + NT3 * 5 + NT4 * 2 + NT5 * 7 + NT6W * 10 + NT6L * 10 + RT1 * 5 + HOUR * 2 + RT2 * 4 + RT3 * 15 + RT4 * 10 + RT5 * 7.5 + RT5H * 10 + RT6 * 10 + RT6H * 14 + RT8 * 8 + RT9 * 4 + RT10 * 3 + RT10W * 6 + RT11NA * 3 + RT11AT * 7 + RT12 * 8 + RT14 * 2 + OS * 12 + PMPW * 5 + PMPL * 3 + NS * 10 + HP * 3 + AS * 7 + WI * 5 + SP * 10;
+            totalap = Math.round(totalap);
         }
 
         let data = `${NAME} (${RANK})\r\r\nPoints: ${total} RP: ${totalrp} AP: ${totalap}\r\n\r\n`;
@@ -115,12 +120,14 @@ function submit() {
         data += addTaskDetails(RT12, MULTI, 10, 5, 8, 'R-Task 12');
         data += addTaskDetails(RT13, MULTI, 3, 1, 2, 'R-Task 13');
         data += addTaskDetails(RT14, MULTI, 3, 1, 2, 'R-Task 14');
-        data += addTaskDetails(SR, MULTI, 9, 5, 4, 'M.E. Squad Raid');
-        data += addTaskDetails(HP, MULTI, 6, 2, 3, 'M.E. High-Priority');
-        data += addTaskDetails(PMPW, MULTI, 5, 3, 5, 'Q.E. Practice Makes Perfect [Win]');
-        data += addTaskDetails(PMPL, MULTI, 4, 2, 3, 'Q.E. Practice Makes Perfect [Loss]');
-        data += addTaskDetails(OS, MULTI, 15, 8, 12, 'Q.E. Overwhelming Superiority');
-
+        data += addTaskDetails(OS, MULTI, 15, 8, 12, 'M/Q.E. Overwhelming Superiority');
+        data += addTaskDetails(PMPW, MULTI, 5, 3, 5, 'M/Q.E. Practice Makes Perfect [Win]');
+        data += addTaskDetails(PMPL, MULTI, 4, 2, 3, 'M/Q.E. Practice Makes Perfect [Loss]');
+        data += addTaskDetails(NS, MULTI, 12, 6, 10, 'M/Q.E. Natural Selection');
+        data += addTaskDetails(HP, MULTI, 6, 2, 3, 'M/Q.E. High Priority');
+        data += addTaskDetails(AS, MULTI, 10, 7, 7, 'S.E. Acedia [Sloth]');
+        data += addTaskDetails(WI, MULTI, 6, 4, 5, 'S.E. Ira [Wrath]');
+        data += addTaskDetails(SP, MULTI, 15, 8, 10, 'S.E. Superbia [Pride]');
         data += `=================================\r\n`;
         localStorage.setItem(j, data);
     }
