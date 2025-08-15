@@ -116,9 +116,9 @@ function submit() {
         data += (RT3B > 0) ? `+${Math.round(RT3B * MULTI * 5)} points for being the best on the joint training\r\n` : '';
         data += addTaskDetails(RT4, MULTI, 5, 3, 10, 'R-Task 4');
         data += addTaskDetails(RT5, MULTI, 7, 5, 7.5, 'R-Task 5 (attending)');
-        data += (RT5H > 0) ? `+${Math.round(RT5H * 10)} ap (hosting) for ${RT5H}x R-Task 5\r\n` : '';
-        data += addTaskDetails(RT6, MULTI, 10, 7, 10, 'R-Task 6 (attending)');
-        data += (RT6H > 0) ? `+${Math.round(RT6H * 14)} ap (hosting) for ${RT6H}x R-Task 6\r\n` : '';        
+        data += addTaskDetails(RT5H, MULTI, 7, 5, 10, 'R-Task 5 (hosting)');
+        data += addTaskDetails(RT6, MULTI, 10, 7, 10, 'R-Task 6 (attending)'); 
+        data += addTaskDetails(RT6H, MULTI, 10, 7, 14, 'R-Task 6 (hosting)');       
         data += addTaskDetails(RT8, MULTI, 10, 5, 8, 'R-Task 8');
         data += addTaskDetails(RT9, MULTI, 4, 2, 4, 'R-Task 9');
         data += addTaskDetails(RT10, MULTI, 3, 1, 3, 'R-Task 10');
@@ -126,7 +126,7 @@ function submit() {
         data += addTaskDetails(RT11NA, MULTI, 4, 1, 3, 'R-Task 11 [Non-Allied HR]');
         data += addTaskDetails(RT11AT, MULTI, 6, 3, 7, 'R-Task 11 [Aogiri-Tree HR]');
         data += addTaskDetails(RT12, MULTI, 10, 5, 8, 'R-Task 12');
-        data += addTaskDetails(RT13, MULTI, 3, 1, 2, 'R-Task 13');
+        data += addTaskDetails(RT13, MULTI, 3, 1, 0, 'R-Task 13');
         data += addTaskDetails(RT14, MULTI, 3, 1, 2, 'R-Task 14');
         data += addTaskDetails(OS, MULTI, 15, 8, 12, 'M/Q.E. Overwhelming Superiority');
         data += addTaskDetails(PMPW, MULTI, 5, 3, 5, 'M/Q.E. Practice Makes Perfect [Win]');
@@ -189,3 +189,4 @@ function addRowFocusListeners() {
 }
 
 window.addEventListener('load', addRowFocusListeners);
+
